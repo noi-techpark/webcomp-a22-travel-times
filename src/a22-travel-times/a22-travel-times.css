@@ -1,0 +1,321 @@
+/*
+ * SPDX-FileCopyrightText: 2025 NOI Techpark <digital@noi.bz.it>
+ *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+/* variables definition */
+:host {
+  /**
+   * @prop --color-primary: Primary color
+   */
+  --color-primary: #0068B4;
+  /**
+   * @prop --color-secondary: Secondary color
+   */
+  --color-secondary: #00A767;
+
+
+  /**
+   * @prop --color-text: Text color
+   */
+  --color-text: #6792AA;
+  /**
+   * @prop --color-background: Background color
+   */
+  --color-background: #FFFFFF;
+
+  /**
+   * @prop --color-border: Border color
+   */
+  --color-border: #0068B4;
+
+  /**
+   * @prop --color-footer: Footer color
+   */
+  --color-footer: #0068b4;
+  /**
+   * @prop --color-footer-contrast: Footer contrast color
+   */
+  --color-footer-contrast: #FFFFFF;
+
+
+  /**
+   * @prop --color-busy-regular: Regular traffic color
+   */
+  --color-busy-regular: #18a767;
+  /**
+   * @prop --color-busy-regular-contrast: Regular traffic contrast color
+   */
+  --color-busy-regular-contrast: #FFFFFF;
+
+  /**
+   * @prop --color-busy-light: Light delay traffic color
+   */
+  --color-busy-light: #99d913;
+  /**
+   * @prop --color-busy-light-contrast: Light delay traffic contrast color
+   */
+  --color-busy-light-contrast: #FFFFFF;
+
+  /**
+   * @prop --color-busy-severe: Severe traffic color
+   */
+  --color-busy-severe: #fab813;
+  /**
+   * @prop --color-busy-severe-contrast: Severe traffic contrast color
+   */
+  --color-busy-severe-contrast: #FFFFFF;
+
+  /**
+   * @prop --color-busy-heavy: Heavy traffic color
+   */
+  --color-busy-heavy: #FF7F2C;
+  /**
+   * @prop --color-busy-heavy-contrast: Heavy traffic contrast color
+   */
+  --color-busy-heavy-contrast: #FFFFFF;
+
+  /**
+   * @prop --color-busy-critical: Critical traffic color
+   */
+  /*--color-busy-critical: #FF1731;*/
+  --color-busy-critical: #f22139;
+  /**
+   * @prop --color-busy-critical-contrast: Critical traffic contrast color
+   */
+  --color-busy-critical-contrast: #FFFFFF;
+
+  /**
+   * @prop --color-busy-empty: No data traffic color
+   */
+  --color-busy-empty: #DDD;
+  /**
+   * @prop --color-busy-empty-contrast: No data traffic contrast color
+   */
+  --color-busy-empty-contrast: #666;
+
+  /**
+   * @prop --color-car-light: Label color of light car
+   */
+  --color-car-light: var(--color-busy-regular);
+
+  /**
+   * @prop --color-car-heavy: Label color of heavy car
+   */
+  --color-car-heavy: var(--color-busy-heavy);
+
+  /**
+   * @prop --scrollbar-color: Scrollbar thumb color
+   */
+  --scrollbar-color: initial;
+  /**
+   * @prop --scrollbar-bg: Scrollbar background color
+   */
+  --scrollbar-bg: initial;
+
+  /**
+   * @prop --busy-box-size: Size of the box
+   */
+  --busy-box-size: 2.2em;
+}
+
+
+:host {
+  /*display: block;*/
+  display: grid;
+  contain: content;
+  font-family: inherit;
+
+  background: var(--color-background);
+}
+
+:host(.layout--tablet),
+:host(.layout--mobile) {
+}
+
+:host(.layout) {
+  margin: 0 auto;
+  max-width: 1240px;
+}
+
+.layout__scroll {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg);
+}
+
+.layout__title {
+  padding: 12px 12px 0;
+}
+
+.layout__center {
+  padding: 0 12px;
+}
+
+.layout__spacer {
+  flex: 1;
+}
+
+.layout__footer {
+  padding: 12px 0 0;
+}
+
+/** TITLE */
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.1em;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5ch;
+}
+
+.title__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5ch;
+}
+
+.title__icon {
+  color: var(--color-secondary);
+}
+
+.title__text {
+  color: var(--color-primary);
+  min-width: 7ch;
+}
+
+
+:host(.layout--mobile) .title.title--header-direction {
+  display: none;
+}
+
+.title.title--row-direction {
+  display: none;
+}
+
+:host(.layout--mobile) .title.title--row-direction {
+  display: flex;
+}
+
+
+.title-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5ch;
+}
+
+.title-select ion-toggle {
+  --track-background: var(--color-car-light);
+  --track-background-checked: var(--color-car-heavy);
+
+  --handle-height: calc(1.5em - (2px * 2));
+  --handle-width: calc(1.5em - (2px * 2));
+  --border-radius: 1.5em;
+}
+
+.title-select ion-toggle::part(track) {
+  width: 2.5em;
+  height: 1.5em;
+}
+
+.vehicle {
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.vehicle--light {
+  color: var(--color-car-light);
+}
+
+.vehicle--heavy {
+  color: var(--color-car-heavy);
+}
+
+
+/* legend */
+.legend {
+  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  background: var(--color-footer);
+  color: var(--color-text);
+}
+
+.legend__item {
+  padding: 6px 3px;
+  text-align: center;
+  background: var(--color-background);
+  user-select: none;
+  min-height: calc(1em + 12px);
+}
+
+.legend__item-content {
+  margin-left: .5ch;
+  display: inline-block;
+}
+
+:host(.layout--mobile) .legend__item-content {
+  display: none;
+}
+
+.legend__icon {
+  display: inline-block;
+}
+
+/* TABLE */
+.row {
+  margin-bottom: 8px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 8px;
+  align-items: center;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.row.row--no-border {
+  border-bottom: none;
+}
+
+.row__name {
+  padding: 8px 0;
+}
+
+:host(.layout--tablet) .row {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+:host(.layout--tablet) .row__name {
+  grid-column: 1 / span 2;
+}
+
+:host(.layout--mobile) .row {
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 0;
+}
+
+:host(.layout--mobile) .row__traffic-level {
+  margin-bottom: 8px;
+}
+
+.row noi-traffic-level-box {
+  height: var(--busy-box-size);
+  width: var(--busy-box-size);
+}
+
+.row__traffic-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5ch;
+}
+
+.row__placeholder {
+  flex: 1;
+}

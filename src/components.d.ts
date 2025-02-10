@@ -5,35 +5,143 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { TravelTimesLevel, TravelTimesVehicleType } from "./data/travel-times/TravelTimesShort";
+import { ViewLayout } from "./data/breakpoints";
+import { IconName } from "./blocks/icon/icon.component";
+export { TravelTimesLevel, TravelTimesVehicleType } from "./data/travel-times/TravelTimesShort";
+export { ViewLayout } from "./data/breakpoints";
+export { IconName } from "./blocks/icon/icon.component";
 export namespace Components {
-    interface HelloWorld {
-        "name": string;
+    /**
+     * Traffic forecast component
+     */
+    interface NoiA22TravelTimes {
+        /**
+          * Language
+         */
+        "language": string;
+        /**
+          * Layout appearance
+         */
+        "layout": ViewLayout;
+        /**
+          * Vehicle type
+         */
+        "vehicleType": TravelTimesVehicleType;
+    }
+    /**
+     * (INTERNAL) render an icon.
+     * Icons are embedded inside the component (so far).
+     * Icon size can be changed by 'font-size' style
+     */
+    interface NoiIcon {
+        /**
+          * icon name
+         */
+        "name": IconName | string;
+    }
+    /**
+     * (INTERNAL) part of 'noi-traffic-prediction'
+     */
+    interface NoiTrafficLevelBox {
+        "level": TravelTimesLevel | string;
     }
 }
 declare global {
-    interface HTMLHelloWorldElement extends Components.HelloWorld, HTMLStencilElement {
+    /**
+     * Traffic forecast component
+     */
+    interface HTMLNoiA22TravelTimesElement extends Components.NoiA22TravelTimes, HTMLStencilElement {
     }
-    var HTMLHelloWorldElement: {
-        prototype: HTMLHelloWorldElement;
-        new (): HTMLHelloWorldElement;
+    var HTMLNoiA22TravelTimesElement: {
+        prototype: HTMLNoiA22TravelTimesElement;
+        new (): HTMLNoiA22TravelTimesElement;
+    };
+    /**
+     * (INTERNAL) render an icon.
+     * Icons are embedded inside the component (so far).
+     * Icon size can be changed by 'font-size' style
+     */
+    interface HTMLNoiIconElement extends Components.NoiIcon, HTMLStencilElement {
+    }
+    var HTMLNoiIconElement: {
+        prototype: HTMLNoiIconElement;
+        new (): HTMLNoiIconElement;
+    };
+    /**
+     * (INTERNAL) part of 'noi-traffic-prediction'
+     */
+    interface HTMLNoiTrafficLevelBoxElement extends Components.NoiTrafficLevelBox, HTMLStencilElement {
+    }
+    var HTMLNoiTrafficLevelBoxElement: {
+        prototype: HTMLNoiTrafficLevelBoxElement;
+        new (): HTMLNoiTrafficLevelBoxElement;
     };
     interface HTMLElementTagNameMap {
-        "hello-world": HTMLHelloWorldElement;
+        "noi-a22-travel-times": HTMLNoiA22TravelTimesElement;
+        "noi-icon": HTMLNoiIconElement;
+        "noi-traffic-level-box": HTMLNoiTrafficLevelBoxElement;
     }
 }
 declare namespace LocalJSX {
-    interface HelloWorld {
-        "name"?: string;
+    /**
+     * Traffic forecast component
+     */
+    interface NoiA22TravelTimes {
+        /**
+          * Language
+         */
+        "language"?: string;
+        /**
+          * Layout appearance
+         */
+        "layout"?: ViewLayout;
+        /**
+          * Vehicle type
+         */
+        "vehicleType"?: TravelTimesVehicleType;
+    }
+    /**
+     * (INTERNAL) render an icon.
+     * Icons are embedded inside the component (so far).
+     * Icon size can be changed by 'font-size' style
+     */
+    interface NoiIcon {
+        /**
+          * icon name
+         */
+        "name"?: IconName | string;
+    }
+    /**
+     * (INTERNAL) part of 'noi-traffic-prediction'
+     */
+    interface NoiTrafficLevelBox {
+        "level"?: TravelTimesLevel | string;
     }
     interface IntrinsicElements {
-        "hello-world": HelloWorld;
+        "noi-a22-travel-times": NoiA22TravelTimes;
+        "noi-icon": NoiIcon;
+        "noi-traffic-level-box": NoiTrafficLevelBox;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "hello-world": LocalJSX.HelloWorld & JSXBase.HTMLAttributes<HTMLHelloWorldElement>;
+            /**
+             * Traffic forecast component
+             */
+            "noi-a22-travel-times": LocalJSX.NoiA22TravelTimes & JSXBase.HTMLAttributes<HTMLNoiA22TravelTimesElement>;
+            /**
+             * (INTERNAL) render an icon.
+             * Icons are embedded inside the component (so far).
+             * Icon size can be changed by 'font-size' style
+             */
+            "noi-icon": LocalJSX.NoiIcon & JSXBase.HTMLAttributes<HTMLNoiIconElement>;
+            /**
+             * (INTERNAL) part of 'noi-traffic-prediction'
+             */
+            "noi-traffic-level-box": LocalJSX.NoiTrafficLevelBox & JSXBase.HTMLAttributes<HTMLNoiTrafficLevelBoxElement>;
         }
     }
 }

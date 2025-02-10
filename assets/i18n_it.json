@@ -1,0 +1,13 @@
+{
+  "app.title": "Tratto",
+  "app.vehicle.light": "Leggeri",
+  "app.vehicle.heavy": "Pesanti",
+  "app.traffic.regular": "Scorrevole",
+  "app.traffic.light": "Rallentamenti",
+  "app.traffic.severe": "Rallentato con code",
+  "app.traffic.heavy": "Code a tratti",
+  "app.traffic.critical": "Critico",
+  "app.traffic.none": "Nessun dato",
+  "app.direction.south": "Sud",
+  "app.direction.north": "Nord"
+}

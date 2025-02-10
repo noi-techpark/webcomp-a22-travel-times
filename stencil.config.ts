@@ -7,16 +7,16 @@ import { Config } from '@stencil/core';
 // https://stenciljs.com/docs/config
 
 export const config: Config = {
-  namespace: 'noi-a22-traffic-forecast',
+  namespace: 'noi-a22-travel-times',
   // buildEs5: true,
   // hashFileNames: false,
   // globalStyle: 'src/global/app.css',
-  // globalScript: 'src/global/app.ts',
+  globalScript: 'src/app.ts',
   // taskQueue: 'async',
   bundles: [
     {
       components: [
-        'noi-a22-traffic-forecast'
+        'noi-a22-travel-times'
       ]
     },
   ],

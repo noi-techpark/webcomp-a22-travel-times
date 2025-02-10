@@ -10,6 +10,7 @@
     "lint": "reuse lint"
   },
   "dependencies": {
+    "@ionic/core": "^8.4.3",
     "@stencil/core": "^4.23.2",
     "date-fns": "^4.1.0"
   },
