@@ -159,7 +159,6 @@
 }
 
 .layout__footer {
-  padding: 12px 0 0;
 }
 
 /** TITLE */
@@ -252,7 +251,7 @@
   text-align: center;
   background: var(--color-background);
   user-select: none;
-  min-height: calc(1em + 12px);
+  min-height: calc(0.5em + 12px);
 }
 
 .legend__item-content {
@@ -286,6 +285,7 @@
 
 .row__name {
   padding: 8px 0;
+  font-weight: 500;
 }
 
 :host(.layout--tablet) .row {
