@@ -25,6 +25,14 @@ export namespace Components {
          */
         "layout": ViewLayout;
         /**
+          * Reload traffic data
+         */
+        "refreshData": () => Promise<void>;
+        /**
+          * Data reload interval
+         */
+        "reloadInterval": number;
+        /**
           * Vehicle type
          */
         "vehicleType": TravelTimesVehicleType;
@@ -96,6 +104,10 @@ declare namespace LocalJSX {
           * Layout appearance
          */
         "layout"?: ViewLayout;
+        /**
+          * Data reload interval
+         */
+        "reloadInterval"?: number;
         /**
           * Vehicle type
          */

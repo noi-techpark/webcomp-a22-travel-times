@@ -6,13 +6,30 @@ import { ListResponseV2 } from "../ListResponse";
 import { TravelTimesResponse } from "./TravelTimes";
 import { TrafficTimesUtils } from "./traffic-times.utils";
 import { TravelTimesShort } from "./TravelTimesShort";
+import { TimerWatcher } from "../../utils/TimerWatcher";
 
 // origin is used to track usage and traffic patterns
 const ORIGIN = 'webcomp-a22-travel-times';
 
+
+/**
+ * Default interval to reload data
+ * 10 minutes
+ */
+export const RELOAD_INTERVAL_DEFAULT = 10 * 60 * 1000;
+/**
+ * Minimum interval to reload data
+ * 1 minute
+ */
+export const RELOAD_INTERVAL_MIN = 60 * 1000;
+
+
 export class TravelTimesDataService {
 
 
+  /**
+   *
+   */
   getTravelTimesData(): Promise<TravelTimesShort[]> {
     const whereQuery = `where=sorigin.eq.A22`;
 
@@ -28,6 +45,19 @@ export class TravelTimesDataService {
         console.log('getTravelTimesData short', r);
         return r;
       });
+  }
+
+  /**
+   */
+  getTravelTimesWatcher(interval = RELOAD_INTERVAL_DEFAULT) {
+    interval = interval || RELOAD_INTERVAL_DEFAULT; // null value doesn't set default value, so we assign it manually
+    if (interval < RELOAD_INTERVAL_MIN) {
+      console.warn(`Reload interval cannot be less than ${RELOAD_INTERVAL_MIN}ms`);
+      interval = RELOAD_INTERVAL_MIN;
+    }
+    return new TimerWatcher(() => {
+      return this.getTravelTimesData();
+    }, interval);
   }
 
 }

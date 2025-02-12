@@ -2,12 +2,13 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import { Component, Element, forceUpdate, h, Host, Prop, State, Watch } from "@stencil/core";
+import { Component, Element, forceUpdate, h, Host, Method, Prop, State, Watch } from "@stencil/core";
 import { getLayoutClass, resolveLayoutAuto, ViewLayout } from "../data/breakpoints";
 import { LanguageDataService } from "../data/language/language-data-service";
 import { StencilComponent } from "../utils/StencilComponent";
 import { TravelTimesDataService } from "../data/travel-times/travel-times-data-service";
 import { TravelTimesShort, TravelTimesVehicleType } from "../data/travel-times/TravelTimesShort";
+import { Subscription } from "../utils/TimerWatcher";
 
 /**
  * Traffic forecast component
@@ -41,6 +42,12 @@ export class A22TravelTimesComponent implements StencilComponent {
   @Prop({mutable: true})
   layout: ViewLayout = 'auto';
 
+  /**
+   * Data reload interval
+   */
+  @Prop({mutable: true})
+  reloadInterval: number = 600000;
+
   @State()
   layoutResolved: ViewLayout;
 
@@ -48,6 +55,7 @@ export class A22TravelTimesComponent implements StencilComponent {
 
   _travelTimesData: TravelTimesShort[] = [];
 
+  dataSub: Subscription = null;
   sizeObserver: ResizeObserver = null;
 
   // note: services are overridden in tests
@@ -68,7 +76,7 @@ export class A22TravelTimesComponent implements StencilComponent {
 
     this._recalculateLayoutClass();
     this._watchSize();
-    this._reloadData();
+    this.refreshData();
   }
 
   disconnectedCallback() {
@@ -80,14 +88,6 @@ export class A22TravelTimesComponent implements StencilComponent {
     forceUpdate(this.el);
   }
 
-  _reloadData() {
-    this.travelTimesDataService.getTravelTimesData()
-      .then(r => {
-        this._travelTimesData = r;
-        forceUpdate(this.el);
-      });
-  }
-
   @Watch('language')
   onLanguageChange() {
     return this.languageService.useLanguage(this.language);
@@ -96,6 +96,27 @@ export class A22TravelTimesComponent implements StencilComponent {
   @Watch('layout')
   _recalculateLayoutClass() {
     this.layoutResolved = resolveLayoutAuto(this.el.offsetWidth, this.layout);
+  }
+
+  @Watch('reloadInterval')
+  reloadIntervalChanged() {
+    this.refreshData();
+  }
+
+  /**
+   * Reload traffic data
+   */
+  @Method()
+  async refreshData() {
+    // re-subscribe to data source
+    if (this.dataSub) {
+      this.dataSub.unsubscribe();
+    }
+    this.dataSub = this.travelTimesDataService.getTravelTimesWatcher(this.reloadInterval)
+      .subscribe(r => {
+        this._travelTimesData = r;
+        forceUpdate(this.el);
+      });
   }
 
   _watchSize() {
@@ -141,8 +162,8 @@ export class A22TravelTimesComponent implements StencilComponent {
   }
 
   _renderTableCell(info: TravelTimesShort) {
-    const southData = info.south?.[this.vehicleType==='light' ? 'lightVehicle' : 'heavyVehicle'];
-    const northData = info.north?.[this.vehicleType==='light' ? 'lightVehicle' : 'heavyVehicle'];
+    const southData = info.south?.[this.vehicleType === 'light' ? 'lightVehicle' : 'heavyVehicle'];
+    const northData = info.north?.[this.vehicleType === 'light' ? 'lightVehicle' : 'heavyVehicle'];
     return (<div class="row">
       <div class="row__name">{info.name}</div>
       <div class="row__traffic-level">
@@ -175,7 +196,7 @@ export class A22TravelTimesComponent implements StencilComponent {
       <div class="row row--no-border">
         <div class="row__name title__wrapper">
 
-        <div class="title">
+          <div class="title">
             <noi-icon class="title__icon" name="location_on"></noi-icon>
             <span class="title__text">{this.languageService.translate('app.title')}</span>
           </div>
@@ -186,7 +207,8 @@ export class A22TravelTimesComponent implements StencilComponent {
                  onClick={() => this.setVehicleType('light')}>
               {this.languageService.translate('app.vehicle.light')}
             </div>
-            <ion-toggle mode="ios" checked={this.vehicleType === 'heavy'} onIonChange={e => this.changeVehicleType(e)}></ion-toggle>
+            <ion-toggle mode="ios" checked={this.vehicleType === 'heavy'}
+                        onIonChange={e => this.changeVehicleType(e)}></ion-toggle>
             <div class={this.vehicleType === 'heavy' ? 'vehicle vehicle--heavy' : 'vehicle'}
                  onClick={() => this.setVehicleType('heavy')}>
               {this.languageService.translate('app.vehicle.heavy')}
