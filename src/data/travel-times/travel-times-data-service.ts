@@ -38,11 +38,11 @@ export class TravelTimesDataService {
       .then(r => r.data)
       // .then(r => TrafficPredictionUtils.convertToShortInfo(r))
       .then(r => {
-        console.log('getTravelTimesData', r);
+        // console.log('getTravelTimesData', r);
         const shortInfoArr = TrafficTimesUtils.convertToShortInfo(r);
         return TrafficTimesUtils.sortFromNorthToSouth(shortInfoArr);
       }).then(r => {
-        console.log('getTravelTimesData short', r);
+        // console.log('getTravelTimesData short', r);
         return r;
       });
   }
