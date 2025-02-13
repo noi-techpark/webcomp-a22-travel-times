@@ -26,7 +26,7 @@
   --color-background: #FFFFFF;
 
   /**
-   * @prop --color-border: Border color
+   * @prop --color-border: Border line color
    */
   --color-border: #0068B4;
 
@@ -96,12 +96,12 @@
   --color-busy-empty-contrast: #666;
 
   /**
-   * @prop --color-car-light: Label color of light car
+   * @prop --color-car-light: Label color of light car option
    */
   --color-car-light: var(--color-busy-regular);
 
   /**
-   * @prop --color-car-heavy: Label color of heavy car
+   * @prop --color-car-heavy: Label color of heavy car option
    */
   --color-car-heavy: var(--color-busy-heavy);
 
@@ -115,7 +115,7 @@
   --scrollbar-bg: initial;
 
   /**
-   * @prop --busy-box-size: Size of the box
+   * @prop --busy-box-size: Size of the traffic box indicator
    */
   --busy-box-size: 2.2em;
 }
