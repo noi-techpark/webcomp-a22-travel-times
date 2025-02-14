@@ -11,7 +11,7 @@ export const config: Config = {
   // buildEs5: true,
   // hashFileNames: false,
   // globalStyle: 'src/global/app.css',
-  globalScript: 'src/app.ts',
+  // globalScript: 'src/app.ts',
   // taskQueue: 'async',
   bundles: [
     {
