@@ -9,6 +9,7 @@ import { StencilComponent } from "../utils/StencilComponent";
 import { TravelTimesDataService } from "../data/travel-times/travel-times-data-service";
 import { TravelTimesShort, TravelTimesVehicleType } from "../data/travel-times/TravelTimesShort";
 import { Subscription } from "../utils/TimerWatcher";
+import { formatDateTime } from "../utils/date";
 
 /**
  * Traffic forecast component
@@ -168,8 +169,8 @@ export class A22TravelTimesComponent implements StencilComponent {
       <div class="row__name">{info.name}</div>
       <div class="row__traffic-level">
         <noi-traffic-level-box level={southData?.level}></noi-traffic-level-box>
-        {(southData ? <noi-icon name="access_time"></noi-icon> : null)}
-        {(southData ? <div>{southData?.date?.toLocaleString()}</div> : null)}
+        {(southData?.date ? <noi-icon name="access_time"></noi-icon> : null)}
+        {(southData?.date ? <div>{formatDateTime(southData.date)}</div> : null)}
 
         <div class="row__placeholder"></div>
         <div class="title title--row-direction">
@@ -179,8 +180,8 @@ export class A22TravelTimesComponent implements StencilComponent {
       </div>
       <div class="row__traffic-level">
         <noi-traffic-level-box level={northData?.level}></noi-traffic-level-box>
-        {(northData ? <noi-icon name="access_time"></noi-icon> : null)}
-        {(northData ? <div>{northData?.date?.toLocaleString()}</div> : null)}
+        {(northData?.date ? <noi-icon name="access_time"></noi-icon> : null)}
+        {(northData?.date ? <div>{formatDateTime(northData.date)}</div> : null)}
 
         <div class="row__placeholder"></div>
         <div class="title title--row-direction">
