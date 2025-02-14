@@ -1,0 +1,69 @@
+/*
+ * SPDX-FileCopyrightText: 2025 NOI Techpark <digital@noi.bz.it>
+ *
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+:host {
+  /**
+   * @prop --track-background: Track background color
+   */
+  --track-background: rgba(0, 0, 0, 0.086);
+  /**
+   * @prop --track-background-checked: Track background color when it's checked
+   */
+  --track-background-checked: #0068B4;
+  /**
+   * @prop --handle-color: Handle color
+   */
+  --handle-color: #FFF;
+
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.track {
+  display: inline-block;
+  background: var(--track-background);
+  border-radius: 1.5em;
+  width: 2.5em;
+  height: 1.5em;
+  cursor: pointer;
+  transition: background 300ms;
+}
+
+:host([checked]) .track {
+  background: var(--track-background-checked);
+}
+
+.handle {
+  margin: 2px;
+  display: inline-block;
+  height: calc(1.5em - (2px * 2));
+  width: calc(1.5em - (2px * 2));
+  border-radius: calc(1.5em - (2px * 2));
+  background: var(--handle-color);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.06);
+
+  transition: transform 300ms, width 300ms;
+  transform: translateX(0em);
+}
+
+:host([checked]) .handle {
+  transform: translateX(1em);
+}
+
+:host(.dragging) .handle {
+  width: 1.5em;
+}
+
+:host([checked].dragging) .handle {
+  transform: translateX(calc(1em - (2px * 2)));
+}
+
+.native-input {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+}

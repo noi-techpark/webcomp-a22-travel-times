@@ -30,12 +30,12 @@ Icon size can be changed by 'font-size' style
 
 ### Used by
 
- - [noi-a22-traffic-forecast](../../a22-traffic-forecast)
+ - [noi-a22-travel-times](../../a22-travel-times)
 
 ### Graph
 ```mermaid
 graph TD;
-  noi-a22-traffic-forecast --> noi-icon
+  noi-a22-travel-times --> noi-icon
   style noi-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

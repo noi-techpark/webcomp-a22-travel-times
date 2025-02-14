@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2025 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
 /* eslint-disable */
 /* tslint:disable */
 /**
@@ -49,11 +52,28 @@ export namespace Components {
         "name": IconName | string;
     }
     /**
+     * (INTERNAL) render a toggle control.
+     */
+    interface NoiToggle {
+        /**
+          * Checked state
+         */
+        "checked": boolean;
+        /**
+          * Toggle checked state
+         */
+        "toggleValue": () => Promise<void>;
+    }
+    /**
      * (INTERNAL) part of 'noi-traffic-prediction'
      */
     interface NoiTrafficLevelBox {
         "level": TravelTimesLevel | string;
     }
+}
+export interface NoiToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNoiToggleElement;
 }
 declare global {
     /**
@@ -76,6 +96,26 @@ declare global {
         prototype: HTMLNoiIconElement;
         new (): HTMLNoiIconElement;
     };
+    interface HTMLNoiToggleElementEventMap {
+        "noiChange": { checked: boolean };
+    }
+    /**
+     * (INTERNAL) render a toggle control.
+     */
+    interface HTMLNoiToggleElement extends Components.NoiToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNoiToggleElementEventMap>(type: K, listener: (this: HTMLNoiToggleElement, ev: NoiToggleCustomEvent<HTMLNoiToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNoiToggleElementEventMap>(type: K, listener: (this: HTMLNoiToggleElement, ev: NoiToggleCustomEvent<HTMLNoiToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLNoiToggleElement: {
+        prototype: HTMLNoiToggleElement;
+        new (): HTMLNoiToggleElement;
+    };
     /**
      * (INTERNAL) part of 'noi-traffic-prediction'
      */
@@ -88,6 +128,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "noi-a22-travel-times": HTMLNoiA22TravelTimesElement;
         "noi-icon": HTMLNoiIconElement;
+        "noi-toggle": HTMLNoiToggleElement;
         "noi-traffic-level-box": HTMLNoiTrafficLevelBoxElement;
     }
 }
@@ -125,6 +166,19 @@ declare namespace LocalJSX {
         "name"?: IconName | string;
     }
     /**
+     * (INTERNAL) render a toggle control.
+     */
+    interface NoiToggle {
+        /**
+          * Checked state
+         */
+        "checked"?: boolean;
+        /**
+          * Emitted when checked value is changed by user click
+         */
+        "onNoiChange"?: (event: NoiToggleCustomEvent<{ checked: boolean }>) => void;
+    }
+    /**
      * (INTERNAL) part of 'noi-traffic-prediction'
      */
     interface NoiTrafficLevelBox {
@@ -133,6 +187,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "noi-a22-travel-times": NoiA22TravelTimes;
         "noi-icon": NoiIcon;
+        "noi-toggle": NoiToggle;
         "noi-traffic-level-box": NoiTrafficLevelBox;
     }
 }
@@ -150,6 +205,10 @@ declare module "@stencil/core" {
              * Icon size can be changed by 'font-size' style
              */
             "noi-icon": LocalJSX.NoiIcon & JSXBase.HTMLAttributes<HTMLNoiIconElement>;
+            /**
+             * (INTERNAL) render a toggle control.
+             */
+            "noi-toggle": LocalJSX.NoiToggle & JSXBase.HTMLAttributes<HTMLNoiToggleElement>;
             /**
              * (INTERNAL) part of 'noi-traffic-prediction'
              */
