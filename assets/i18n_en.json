@@ -1,0 +1,13 @@
+{
+  "app.title": "Traffic",
+  "app.vehicle.light": "Light",
+  "app.vehicle.heavy": "Heavy",
+  "app.traffic.regular": "Flowing",
+  "app.traffic.light": "Slowdowns",
+  "app.traffic.severe": "Congestion",
+  "app.traffic.heavy": "Bottlenecks",
+  "app.traffic.critical": "Gridlock",
+  "app.traffic.none": "No data",
+  "app.direction.south": "South",
+  "app.direction.north": "North"
+}
