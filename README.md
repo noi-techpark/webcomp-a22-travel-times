@@ -41,6 +41,7 @@ A responsive webcomponent for showing travel times on Brennerlec A22 road
       - [--color-busy-empty-contrast](#--color-busy-empty-contrast)
       - [--color-car-light](#--color-car-light)
       - [--color-car-heavy](#--color-car-heavy)
+      - [--color-car-handle](#--color-car-handle)
       - [--scrollbar-color](#--scrollbar-color)
       - [--scrollbar-bg](#--scrollbar-bg)
       - [--busy-box-size](#--busy-box-size)
@@ -167,6 +168,7 @@ noi-a22-travel-times.dark {
 
   --color-car-light: #18a767;
   --color-car-heavy: #FF7F2C;
+  --color-car-handle: #EEE;
 
   --scrollbar-color: #777;
   --scrollbar-bg: #444;
@@ -319,6 +321,13 @@ Label color of light car option. Default is:
 Label color of heavy car option. Default is:
 ```css
   --color-car-heavy: var(--color-busy-heavy);
+```
+
+#### ---color-car-handle
+
+Handle color. Default is:
+```css
+  --color-car-handle: #FFF;
 ```
 
 #### --scrollbar-color

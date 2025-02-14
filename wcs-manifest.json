@@ -102,7 +102,7 @@
         "label": "CSS style definition",
         "required": false,
         "options": {
-          "default": "  --color-primary: #0068B4; --color-secondary: #00A767; --color-text: #6792AA; --color-background: #FFFFFF; --color-border: #0068B4; --color-footer: #0068b4; --color-footer-contrast: #FFFFFF; --color-busy-regular: #18a767; --color-busy-regular-contrast: #FFFFFF; --color-busy-light: #99d913; --color-busy-light-contrast: #FFFFFF; --color-busy-severe: #fab813; --color-busy-severe-contrast: #FFFFFF; --color-busy-heavy: #FF7F2C; --color-busy-heavy-contrast: #FFFFFF; --color-busy-critical: #f22139; --color-busy-critical-contrast: #FFFFFF; --color-busy-empty: #DDD; --color-busy-empty-contrast: #666; --color-car-light: var(--color-busy-regular); --color-car-heavy: var(--color-busy-heavy); --scrollbar-color: initial; --scrollbar-bg: initial; --busy-box-size: 2.2em;"
+          "default": "  --color-primary: #0068B4; --color-secondary: #00A767; --color-text: #6792AA; --color-background: #FFFFFF; --color-border: #0068B4; --color-footer: #0068b4; --color-footer-contrast: #FFFFFF; --color-busy-regular: #18a767; --color-busy-regular-contrast: #FFFFFF; --color-busy-light: #99d913; --color-busy-light-contrast: #FFFFFF; --color-busy-severe: #fab813; --color-busy-severe-contrast: #FFFFFF; --color-busy-heavy: #FF7F2C; --color-busy-heavy-contrast: #FFFFFF; --color-busy-critical: #f22139; --color-busy-critical-contrast: #FFFFFF; --color-busy-empty: #DDD; --color-busy-empty-contrast: #666; --color-car-light: var(--color-busy-regular); --color-car-heavy: var(--color-busy-heavy); --color-car-handle: #FFF; --scrollbar-color: initial; --scrollbar-bg: initial; --busy-box-size: 2.2em;"
         }
       }
     ]

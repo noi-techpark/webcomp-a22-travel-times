@@ -79,7 +79,6 @@
   /**
    * @prop --color-busy-critical: Critical traffic color
    */
-  /*--color-busy-critical: #FF1731;*/
   --color-busy-critical: #f22139;
   /**
    * @prop --color-busy-critical-contrast: Critical traffic contrast color
@@ -104,6 +103,10 @@
    * @prop --color-car-heavy: Label color of heavy car option
    */
   --color-car-heavy: var(--color-busy-heavy);
+  /**
+   * @prop --color-car-handle: Handle color
+   */
+  --color-car-handle: #FFF;
 
   /**
    * @prop --scrollbar-color: Scrollbar thumb color
@@ -123,7 +126,8 @@
 
 :host {
   /*display: block;*/
-  display: grid;
+  display: flex;
+  flex-direction: column;
   contain: content;
   font-family: inherit;
 
@@ -136,10 +140,10 @@
 
 :host(.layout) {
   margin: 0 auto;
-  max-width: 1240px;
 }
 
 .layout__scroll {
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -207,18 +211,10 @@
   gap: 0.5ch;
 }
 
-.title-select ion-toggle {
+.title-select noi-toggle {
   --track-background: var(--color-car-light);
   --track-background-checked: var(--color-car-heavy);
-
-  --handle-height: calc(1.5em - (2px * 2));
-  --handle-width: calc(1.5em - (2px * 2));
-  --border-radius: 1.5em;
-}
-
-.title-select ion-toggle::part(track) {
-  width: 2.5em;
-  height: 1.5em;
+  --handle-color: var(--color-car-handle);
 }
 
 .vehicle {

@@ -138,7 +138,6 @@ export class A22TravelTimesComponent implements StencilComponent {
   }
 
   changeVehicleType(e: CustomEvent) {
-    console.log(e);
     const isHeavyVehicle = e.detail.checked;
     this.vehicleType = isHeavyVehicle ? 'heavy' : 'light';
   }
@@ -208,7 +207,8 @@ export class A22TravelTimesComponent implements StencilComponent {
                  onClick={() => this.setVehicleType('light')}>
               {this.languageService.translate('app.vehicle.light')}
             </div>
-            <noi-toggle checked={this.vehicleType === 'heavy'} onNoiChange={e => this.changeVehicleType(e)}></noi-toggle>
+            <noi-toggle checked={this.vehicleType === 'heavy'}
+                        onNoiChange={e => this.changeVehicleType(e)}></noi-toggle>
             <div class={this.vehicleType === 'heavy' ? 'vehicle vehicle--heavy' : 'vehicle'}
                  onClick={() => this.setVehicleType('heavy')}>
               {this.languageService.translate('app.vehicle.heavy')}
