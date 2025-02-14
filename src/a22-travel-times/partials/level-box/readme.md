@@ -17,23 +17,21 @@ SPDX-License-Identifier: CC0-1.0
 
 ## Properties
 
-| Property | Attribute | Description | Type                                             | Default     |
-| -------- | --------- | ----------- | ------------------------------------------------ | ----------- |
-| `level`  | `level`   |             | `"critical" \| "heavy" \| "regular" \| "severe"` | `undefined` |
+| Property | Attribute | Description | Type                                    | Default     |
+| -------- | --------- | ----------- | --------------------------------------- | ----------- |
+| `level`  | `level`   |             | `-1 \| 1 \| 2 \| 3 \| 4 \| 5 \| string` | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [noi-a22-traffic-forecast](../..)
- - [noi-traffic-day-details](../day-details)
+ - [noi-a22-travel-times](../..)
 
 ### Graph
 ```mermaid
 graph TD;
-  noi-a22-traffic-forecast --> noi-traffic-level-box
-  noi-traffic-day-details --> noi-traffic-level-box
+  noi-a22-travel-times --> noi-traffic-level-box
   style noi-traffic-level-box fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
