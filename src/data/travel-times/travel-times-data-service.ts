@@ -33,7 +33,8 @@ export class TravelTimesDataService {
   getTravelTimesData(): Promise<TravelTimesShort[]> {
     const whereQuery = `where=sorigin.eq.A22`;
 
-    return fetch(`https://mobility.api.opendatahub.testingmachine.eu/v2/flat/LinkStation/*/latest?origin=${ORIGIN}&pagesize=-1&${whereQuery}`)
+    return fetch(` https://mobility.api.opendatahub.com/v2/flat/LinkStation/*/latest?origin=${ORIGIN}&pagesize=-1&${whereQuery}`)
+    // return fetch(`https://mobility.api.opendatahub.testingmachine.eu/v2/flat/LinkStation/*/latest?origin=${ORIGIN}&pagesize=-1&${whereQuery}`)
       .then(r => r.json() as Promise<ListResponseV2<TravelTimesResponse>>)
       .then(r => r.data)
       // .then(r => TrafficPredictionUtils.convertToShortInfo(r))
