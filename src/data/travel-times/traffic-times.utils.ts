@@ -184,7 +184,7 @@ export class TrafficTimesUtils {
         info.distanceFromNorth = response.smetadata?.metroinizio || -1;
 
         info.stationId = stationIds[0];
-        info.name = names[0];
+        info.name = names[0] + "-" + names[1];
 
         info.south.stationId = stationIds[1];
         info.south.name = names[1];
@@ -195,7 +195,7 @@ export class TrafficTimesUtils {
         info.distanceFromNorth = response.smetadata?.metrofine || -1;
 
         info.stationId = stationIds[1];
-        info.name = names[1];
+        info.name = names[1] + " - " + names[0];
 
         info.north.stationId = stationIds[0];
         info.north.name = names[1];
