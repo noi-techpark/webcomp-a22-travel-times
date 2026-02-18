@@ -50,6 +50,9 @@ export class TrafficTimesUtils {
 
     for (const stationResponse of dataArr) {
       const stationInfo = TrafficTimesUtils._parseStationInfo(stationResponse);
+      if (null === stationInfo) {
+        continue;
+      }
 
       if ( !resultHash[stationInfo.stationId]) {
         resultHash[stationInfo.stationId] = stationInfo;
@@ -112,13 +115,16 @@ export class TrafficTimesUtils {
   static _parseStationInfo(response: TravelTimesResponse): TravelTimesShort | null {
     // parse 'scode'
     const stations = (response.scode || '').split('-');
-    if (stations.length != 2) {
+    if (stations.length != 3) {
       console.warn('Unable to parse scode:', response.scode);
       return null;
       ////////////
     }
     // parse 'sname'
     const names = (response.sname || '').split(' - ');
+    // station code now is ion the format 02_A22A22_01-00671_01-00670_DX
+    // and we need to get 00671 - 00670
+    const stationIds = [stations[1].split("_")[0], stations[2].split("_")[0]];
 
     // parse 'iddirezione'
     const directionStr = response?.smetadata?.iddirezione;
@@ -147,13 +153,13 @@ export class TrafficTimesUtils {
 
     // combine result
     const info: TravelTimesShort = {
-      stationId: stations[0],
-      name: names[0],
+      stationId: "",
+      name: "",
       distanceFromNorth: -1,
     };
 
     const directionData: TravelTimesShort_directionData = {
-      stationId: stations[1],
+      stationId: "",
       name: names[1],
     };
 
@@ -176,10 +182,24 @@ export class TrafficTimesUtils {
       case 'south':
         info.south = directionData;
         info.distanceFromNorth = response.smetadata?.metroinizio || -1;
+
+        info.stationId = stationIds[0];
+        info.name = names[0];
+
+        info.south.stationId = stationIds[1];
+        info.south.name = names[1];
+
         break;
       case 'north':
         info.north = directionData;
         info.distanceFromNorth = response.smetadata?.metrofine || -1;
+
+        info.stationId = stationIds[1];
+        info.name = names[1];
+
+        info.north.stationId = stationIds[0];
+        info.north.name = names[1];
+
         break;
     }
 
