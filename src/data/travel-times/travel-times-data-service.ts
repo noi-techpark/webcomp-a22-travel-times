@@ -33,7 +33,7 @@ export class TravelTimesDataService {
    */
   getTravelTimesData(): Promise<TravelTimesShort[]> {
     // return fetch(buildUrl('https://mobility.api.opendatahub.testingmachine.eu/v2/flat/LinkStation/*/latest', {
-    return fetch(buildUrl('https://mobility.api.opendatahub.com/v2/flat/LinkStation/*/latest', {
+    return fetch(buildUrl('https://mobility.api.opendatahub.com/v2/flat/LinkStation/*/latest?limit=-1', {
       origin: ORIGIN,
       pagesize: -1,
       where: 'sorigin.eq.A22',
